@@ -1,0 +1,21 @@
+html, body {
+  margin: 0;
+  padding: 2rem;
+  display:flex;
+  justify-content: center;
+  align-content: center;
+}
+canvas {
+  display: block;
+  margin: auto;
+  
+}
+
+
+.show {
+  display:block;
+}
+
+.no-show {
+  display: none;
+}
