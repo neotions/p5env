@@ -26,7 +26,7 @@ class iso_prism {
   
       // top side
       if(this.h < this.shore) {
-        fill(this.col,100,15);
+        fill(this.col,100,30);
       }
       else {
         fill(this.col,100,100);
@@ -46,7 +46,7 @@ class iso_prism {
   
       // right
       if(this.h < this.shore) {
-        fill(this.col,100,5);
+        fill(this.col,100,10);
       }
       else {
         fill(this.col,80,30);
@@ -65,7 +65,7 @@ class iso_prism {
       
       // left side
       if(this.h < this.shore) {
-        fill(this.col,100,10);
+        fill(this.col,100,20);
       }
       else {
         fill(this.col,90,60);
