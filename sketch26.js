@@ -37,16 +37,13 @@ function setup() {
   recording = false;
 
 
-  stroke(0, 0, 30)
   sliders = false;
-  strokeWeight(.5);
+  strokeWeight(.25);
   speed = 64;
   colorMode(HSB);
   frameRate(fr)
   //noStroke();
   //noLoop();
-
-  
 
     // sliders
   if (sliders) {
@@ -70,7 +67,9 @@ function setup() {
   //palette = gradient(start,4,30,true);
   palette = tetradic(start,4,10);
   palette[0][2] = 10; 
-
+  palette[1][2] = 100; 
+  palette[2][2] = 100; 
+  palette[3][2] = 100; 
   
   
 }
@@ -108,24 +107,19 @@ background(fill_hue,100,15);
     
     for(i = 1400; i > -100; i-= size) {
       
-      
-      
       pris.move(i,j);
       k = i / 2 - 300;
       m = j + 100;
       
-      r = cos( sqrt( sq(k) + sq(m) ) / 200 + (t/speed) ) * 10000;
-      r = cos( sqrt( sq(k) + sq(m) ) / 200 + (t/speed) ) * 10000;
+      r = cos( sqrt( sq(k) + sq(m) ) / 200 - (t/speed) ) * 7000;
 
-      s1 = (cos((k * r / 400000) + (t/speed) ) +1 ) /2 ;
-      s2 = (sin((k * r  / 300000) + (t/speed) ) +1 ) /2 ;
-    
-      color_index = Math.round(map(s2,0,1,0,4))
+
+      s1 = (tan((k * r / 400000) + (t/speed) )+1) /2 ;
+      s2 = (sin((k * r  / 400000) + (t/speed) )+1) /2 ;
+      
+      color_index = Math.round(map(s1,0,1,0,4))
 
       pris.col = palette[color_index];
-
-    
-
       pris.h = s2 * 110;
       pris.render();
 

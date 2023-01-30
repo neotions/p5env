@@ -11,7 +11,7 @@ vec = p5.Vector;
 function setup() {
 
   // canvas variable 
-  canvas = createCanvas(800, 800);
+  canvas = createCanvas(1000, 1000);
   canvas.id("canvas");
 
   t = 0;
@@ -21,8 +21,8 @@ function setup() {
   
   colorMode(HSB);
   start_hue = random(360);
-  size = width / 20;
-  pris = new iso_prism(size, size, 60, 200, 50,start_hue);
+  size = width / 200;
+  pris = new iso_prism(size, size, 60, 200, 50,start_hue,500);
 
   // for capture
   capture = new CCapture({
@@ -37,13 +37,16 @@ function setup() {
   recording = false;
 
 
-  sliders = false;
-  strokeWeight(.5);
+  //noiseDetail(25)
+  sliders = true;
   speed = 64;
   colorMode(HSB);
   frameRate(fr)
   //noStroke();
-  //noLoop();
+  strokeWeight(.1)
+  noLoop();
+
+  
 
     // sliders
   if (sliders) {
@@ -63,13 +66,11 @@ function setup() {
   // color functions
   start = [random(360),100,100];
   palette = shades(start,4,10);
-  //palette = split_compliment(start,20);
-  //palette = gradient(start,4,30,true);
-  palette = tetradic(start,4,10);
+  palette = split_compliment(start,20);
+  palette = gradient(start,4,10,true);
+  //palette = tetradic(start,4,10);
   palette[0][2] = 10; 
-  palette[1][2] = 100; 
-  palette[2][2] = 100; 
-  palette[3][2] = 100; 
+
   
   
 }
@@ -102,29 +103,50 @@ background(fill_hue,100,15);
   translate(0, height); // move to far corner
   scale(1.0, -1); // flip x-axis backwards
   
-  
-  for (j = -800; j < 1200; j+= size) {
+  for (j = -1000; j < 1200; j+= size) {
     
-    for(i = 1400; i > -100; i-= size) {
-      
-      
+    for(i = 1400; i > -500; i-= size) {
       
       pris.move(i,j);
-      k = i / 2 - 300;
-      m = j + 100;
+
+      n = noise(i/500,j/500);
+
+      n = n + noise(j/6,i/6) / 200;
       
-      r = cos( sqrt( sq(k) + sq(m) ) / 200 - (t/speed) ) * 10000;
 
-      s1 = (tan((k * r / 400000) + (t/speed) )+1) /2 ;
-      s2 = (sin((k * r  / 400000) + (t/speed) )+1) /2 ;
+      color_index = Math.round(map(n,0,1,0,4));
+
+      // colors
+
+      // water
+      
+        if (n < 0.45) {
+          pris.col = palette[0][0];
+      }
+        
+        //san
+        else if (n < 0.5) {
+          pris.col = palette[1][0];
+      }
+        
+        else if (n < 0.55) {
+          pris.col = palette[2][0];
+      }
+        
+      else if (n < 0.6) {
+        pris.col = palette[3][0];
+      }
+        
+        else if (n < 0.7) {
+          pris.col = palette[4][0];
+      }
+
+
+      console.log(color_index);
+
     
-      color_index = Math.round(map(s1,0,1,0,4))
 
-      pris.col = palette[color_index];
-
-    
-
-      pris.h = s2 * 110;
+      pris.h = n * 600;
       pris.render();
 
     }

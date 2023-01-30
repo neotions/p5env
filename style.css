@@ -1,17 +1,28 @@
 html, body {
   margin: 0;
   padding: 2rem;
-  display:flex;
-  justify-content: center;
-  align-content: center;
+  text-align: center;
+
 }
 canvas {
   display: block;
   margin: auto;
-  
+  display:flex;
+  justify-content: center;
+  align-content: center;
 }
 
+h1 {
+  margin-bottom: 2rem;
+  color:white;
+  font-family: sans-serif;
+}
 
+h2 {
+  margin-bottom: 2rem;
+  color:white;
+  font-family: sans-serif;
+}
 .show {
   display:block;
 }
@@ -19,3 +30,9 @@ canvas {
 .no-show {
   display: none;
 }
+
+.rec {
+  display: none;
+  margin-top:2rem;
+}
+

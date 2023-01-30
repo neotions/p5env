@@ -1,12 +1,12 @@
 class iso_prism {
-    constructor(length, width, height, x, y, col,col_mode) {
+    constructor(length, width, height, x, y, col, height_mx) {
       this.l = length;
       this.w = width;
       this.h = height;
       this.x = x;
       this.y = y;
       this.col = col;
-  
+      this.shore = height_mx * 0.45;
       
     }
     move(x,y){
@@ -16,6 +16,7 @@ class iso_prism {
       
     }
     render() {
+      //stroke(this.col,100,100);
       this.lx = this.l * cos(TWO_PI / 3 / 4);
       this.ly = this.l * sin(TWO_PI / 3 / 4);
       this.wx = this.w * cos(TWO_PI / 3 / 4);
@@ -24,7 +25,12 @@ class iso_prism {
       let x, y;
   
       // top side
-      fill(this.col,100,100);
+      if(this.h < this.shore) {
+        fill(this.col,100,15);
+      }
+      else {
+        fill(this.col,100,100);
+      }
       beginShape(QUADS);
         [x, y] = [this.x, this.y + this.h];
       
@@ -39,7 +45,12 @@ class iso_prism {
       
   
       // right
-      fill(this.col,80,30);
+      if(this.h < this.shore) {
+        fill(this.col,100,5);
+      }
+      else {
+        fill(this.col,80,30);
+      }
       beginShape(QUADS);
   
       [x, y] = [this.x, this.y+ this.h];
@@ -53,7 +64,12 @@ class iso_prism {
       endShape();
       
       // left side
-      fill(this.col,90,60);
+      if(this.h < this.shore) {
+        fill(this.col,100,10);
+      }
+      else {
+        fill(this.col,90,60);
+      }
       beginShape(QUADS);
         [x, y] = [this.x, this.y+ this.h];
         vertex(x, y);
