@@ -4,12 +4,24 @@ let capture;
 let p_index;
 let z = 0;
 
+
+let sound, amplitude;
+let t = 0;
+
+function preload(){
+  sound = loadSound('test.mp3');
+}
+
 // runs once
 function setup() {
 
+
+  sound.loop();
+  amplitude = new p5.Amplitude();
+  amplitude.setInput(sound);
   // canvas variable 
 
-  canvas = createCanvas(400, 400);
+  canvas = createCanvas(800, 800);
   canvas.id("canvas");
   // for capture
   capture = new CCapture({
@@ -24,7 +36,7 @@ function setup() {
   num_f = fr * seconds;
   recording = false;
   sliders = false;
-  gap = width / 40;
+  gap = width / 100;
   colorMode(HSB);
   frameRate(fr)
   //noStroke();
@@ -88,18 +100,20 @@ function draw() {
       y = j - height/2;
       
       // signal 1
+      
+      let level = amplitude.getLevel()/10000;
 
       freq1 = 100;
-      freq2 = 1000;
-      freq3 = 35000//zoom.value(); // effectivly zoom
+      freq2 = sin(level - t) * 9999999;
+      freq3 = 40000000 //zoom.value(); // effectivly zoom
 
       s1 = sin((x * z) / freq1) + z
 
       // signal 2
-      s2 = sin( ( (x + s1) - (y + 1) ) / freq2) + s1;
+      s2 = sin( ( (x - s1) - (y + level) ) / freq2) + s1;
 
       // signal 2
-      s3 = sin( sq( (x + s1) * (y + s2) / freq3 ) + s2);
+      s3 = sin( sq( (x - s1) * (y - s2) / freq3 ) + s2);
           
       // fill raw
       f = sin(s3) * 360;

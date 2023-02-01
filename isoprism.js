@@ -11,12 +11,15 @@ class iso_prism {
     }
     move(x,y){
       
+
+    
       this.x = x*cos(PI/6) + y*cos(PI/6)
       this.y = x*sin(PI/6) - y*sin(PI/6)
       
     }
     render() {
       //stroke(this.col,100,100);
+      
       this.lx = this.l * cos(TWO_PI / 3 / 4);
       this.ly = this.l * sin(TWO_PI / 3 / 4);
       this.wx = this.w * cos(TWO_PI / 3 / 4);
