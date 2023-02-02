@@ -18,7 +18,7 @@ function setup() {
   t = 0;
   scale(-1.0, -1.0); // flip x-axis backwards
 
-  //noStroke();
+  noStroke();
   
   colorMode(HSB);
   speed = 1;
@@ -64,9 +64,9 @@ function setup() {
 
   // color functions
   start = [random(360),100,100];
-  palette = shades(start,4,10);
+  //palette = shades(start,4,10);
   //palette = split_compliment(start,20);
-  palette = gradient(start,4,10,true);
+  palette = gradient(start,4,15,true);
   //palette = tetradic(start,4,10);
 
   
@@ -85,7 +85,7 @@ function draw() {
     if (frameCount === 1) {
       capture.start();
       console.log("starting recording");
-      //document.getElementById("rec").style.display("block");
+      document.getElementById("rec").classList.toggle("no-show");
     }
   
     if (frameCount === seconds * fr) {
@@ -127,17 +127,21 @@ background(fill_hue,100,15);
 
       r = sqrt ( sq(dx) + sq(dy) );
 
-      s1 = (sin(t / speed)+1) / 2 * 900  + 20;
+      s1 = (sin(t / 32)+1) / 2 * 900  + 20;
 
-      n = gauss(r,0,s1) * 70000 ;
+      n = gauss(r,0,s1) * ((cos(t/16) + 1) /2 * 70000);
 
-      color_index = Math.round(n/20) % 5;
+      c = gauss(r,0,s1) * 70000;
+
+      color_index = Math.round(c/20) % 5;
       //console.log(color_index)
 
       pris.col = palette[color_index][0];
 
       pris.h = n * 5;
       pris.render();
+
+      //text(frameCount,width,height+20);
 
     }
 
