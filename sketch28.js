@@ -66,7 +66,7 @@ function setup() {
   start = [random(360),100,100];
   //palette = shades(start,4,10);
   //palette = split_compliment(start,20);
-  palette = gradient(start,4,15,true);
+  palette = gradient(start,4,10,true);
   //palette = tetradic(start,4,10);
 
   
