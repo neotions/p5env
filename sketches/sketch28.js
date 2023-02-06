@@ -23,7 +23,7 @@ function setup() {
   colorMode(HSB);
   speed = 1;
   start_hue = random(360);
-  size = width / 24;
+  size = width / 48;
   pris = new iso_prism(size, size, 60, 200, 50,start_hue,0);
 
   // for capture
@@ -36,7 +36,7 @@ function setup() {
   fr = 60
   seconds = 15
   num_f = fr * seconds;
-  recording = false;
+  recording = true;
 
 
   sliders = false;
@@ -65,7 +65,7 @@ function setup() {
   // color functions
   start = [random(360),100,100];
   //palette = shades(start,4,10);
-  //palette = split_compliment(start,20);
+  palette = split_compliment(start,20);
   palette = gradient(start,4,10,true);
   //palette = tetradic(start,4,10);
 
@@ -93,23 +93,20 @@ function draw() {
       noLoop();
       capture.stop();
       capture.save();
+      document.getElementById("rec").classList.toggle("no-show");
       return;
     }
 
   }
 
-
 fill_hue = palette[0][0];
-
-
 
 background(fill_hue,100,15);
 
   // random peter shit
   translate(0, height); // move to far corner
   scale(1.0, -1); // flip x-axis backwards
-  
-  
+    
   for (j = -800; j < 1200; j+= size) {
     
     for(i = 1400; i > -120; i-= size) {
@@ -118,30 +115,21 @@ background(fill_hue,100,15);
 
       gaussX = 000;
       gaussY = 600;
-
       gaussX = 000;
       gaussY = 600;
-
       dx = j - gaussX;
       dy = i - gaussY;
-
       r = sqrt ( sq(dx) + sq(dy) );
-
-      s1 = (sin(t / 32)+1) / 2 * 900  + 20;
-
-      n = gauss(r,0,s1) * ((cos(t/16) + 1) /2 * 70000);
-
+      s1 = (sin(t / 48)+1) / 2 * 900  + 20;
+      n = gauss(r,0,s1) * ((cos(t/24) + 1) /2 * 70000);
       c = gauss(r,0,s1) * 70000;
 
       color_index = Math.round(c/20) % 5;
       //console.log(color_index)
-
       pris.col = palette[color_index][0];
 
       pris.h = n * 5;
       pris.render();
-
-      //text(frameCount,width,height+20);
 
     }
 
