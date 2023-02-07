@@ -1,12 +1,13 @@
 function setup() {
-    canvas = createCanvas(400,400);
-    gap = width/10;
-    ff = new flowfield(width,height,gap);
-
-    ff.noise_field()
+    canvas = createCanvas(800,800);
+    gap = width/40;
+    field = new noise_field(width,height,gap,100,1);
+    noLoop();
+    //console.log(field.field);
 
 }
 
 function draw() {
     background(255);
+    field.render();
 }
