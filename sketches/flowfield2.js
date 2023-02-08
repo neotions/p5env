@@ -1,5 +1,5 @@
 function setup() {
-    canvas = createCanvas(800,800);
+    canvas = createCanvas(800,1600);
     
     //noLoop();
     //console.log(field.field);
@@ -17,15 +17,24 @@ function setup() {
 
     noiseDetail(20)
 
-    colorMode(HSB)
-    background(0,0,100)
+    colorMode(RGB)
+    background(225)
+
+    palette = [
+        [217,59,146],
+        [171,5,242],
+        [104,5,242],
+        [29,28,64],
+        [242,100,68]
+    ]
+
     start = [random(360),100,100];
-    palette = shades(start,4,10);
+    //palette = shades(start,4,10);
     //palette = split_compliment(start,10);
     //palette = gradient(start,4,15,true);
     //palette = tetradic(start,4,10);
 
-
+    
 
 }
 
@@ -33,12 +42,15 @@ function draw() {
 
     for (let f = 0; f < 1000; f++ ) {
 
-        x = x + noise(x/200 * noise(cos(x/5)));
-        y = y + noise(y/200 * noise(sin(y/5)));
+        n = noise(x,y);
+
+        //x = x + noise(x/200 * noise(cos(x/50)));
+        //y = y + noise(y/200 * noise(sin(y/50)));
         
+        s1 = (sin(f) +1 /1);
         
-        //x = x + (sin(x/1000) + 1) / 2;
-        //y = y + (cos(y/1000) + 1) / 2;
+        x = x + (sin(x/250 + s1) + 1) / 2;
+        y = y + (cos(y/500 + s1) + 1) / 2;
         
         pos = [x,y];
 

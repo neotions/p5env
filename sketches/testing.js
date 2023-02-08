@@ -1,13 +1,13 @@
 function setup() {
     canvas = createCanvas(800,800);
-    
+    gap = width/40;
+    field = new test_field(width,height,gap,100,1)
     //noLoop();
     //console.log(field.field);
-    fill(255,255,255,255);
+
     background(25);
     x = random(width);
     y = random(height);
-    noStroke();
     dots = [];
     
     current_line = [];
@@ -19,78 +19,19 @@ function setup() {
 
     noiseDetail(20)
 
+    noLoop();
+
+    stroke(255);
+
 
 }
 
 function draw() {
 
-    for (let f = 0; f < 1000; f++ ) {
 
-    
-        x = x + noise(x/1000)//* 2 - 1;
-        y = y + noise(y/1000)//* 2 - 1;
-        
-        pos = [x,y];
-
-        if ( isClose(x,y,gap,dot_size) || isOff(x,y)) {
-            fill(random(360),100,100)
-            x = random(-20,width);
-            y = random(-20,height);
-            dots = dots.concat(current_line);
-            for (c = 0; c < current_line.length; c++) {
-                coords = current_line[c];
-                circle(coords[0],coords[1],dot_size)
-            }
-            current_line = [];
-
-        }
-
-        else {
-            //circle(x,y,dot_size);
-            current_line.push(pos);
-            
-        }
-
-        if ( f % 100 == 0) {
-            console.log("f");
-        }        
-        
-    }
-
+field.render()
 
 
 }
 
 
-function isClose(x,y,gap,dot_size) {
-
-    //console.log("this is a dot",dots[0])
-    for (i = 0; i < dots.length; i+=5) {
-
-        x1 = x;
-        y1 = y;
-        x2 = dots[i][0];
-        y2 = dots[i][1];
-
-        d = sqrt( sq(x2-x1) + sq(y2-y1) )
-        
-        if (i == 0 ) {
-            //console.log(d)
-        }
-
-        if (d < dot_size + gap) {
-            return true
-        }
-        
-    }
-    return false
-}
-
-function isOff(x,y) {
-    if (x > width + 20 || y > height + 20) {
-        return true
-    }
-    else {
-        return false;
-    }
-}
