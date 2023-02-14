@@ -1,5 +1,5 @@
 function setup() {
-    canvas = createCanvas(800,1600);
+    canvas = createCanvas(800,800);
     
     //noLoop();
     //console.log(field.field);
@@ -12,20 +12,21 @@ function setup() {
     line_num = 0;
     loop_num = 0;
 
-    gap = 10;
-    dot_size = 20;
+    gap = 5;
+    dot_size = 10;
 
     noiseDetail(20)
 
     colorMode(RGB)
+    //colorMode(HSB)
     background(225)
 
     palette = [
-        [217,59,146],
-        [171,5,242],
-        [104,5,242],
-        [29,28,64],
-        [242,100,68]
+        color("#F2A0CE"),
+        color("#482A74"),
+        color("#382159"),
+        color("#659DBE"),
+        color("#F3EBC4")
     ]
 
     start = [random(360),100,100];
@@ -34,11 +35,16 @@ function setup() {
     //palette = gradient(start,4,15,true);
     //palette = tetradic(start,4,10);
 
-    
+    stop_button = document.getElementById('stop-button');
 
 }
 
 function draw() {
+    
+    stop_button.addEventListener('click', () => {
+        noLoop();
+        stop_button.classList.toggle('no-show');
+    })
 
     for (let f = 0; f < 1000; f++ ) {
 
@@ -49,14 +55,18 @@ function draw() {
         
         s1 = (sin(f) +1 /1);
         
-        x = x + (sin(x/250 + s1) + 1) / 2;
-        y = y + (cos(y/500 + s1) + 1) / 2;
+        dx = sin(y/64/2 + cos(y/48/2))
+        dy = cos(x/64/2 + sin(x/48/2))
+
+        x = x + dx;
+        y = y + dy;
         
         pos = [x,y];
 
-        if ( isClose(x,y,gap,dot_size) || isOff(x,y)) {
+        if ( isClose(x,y,gap,dot_size) || isOff(x,y) || current_line.length > 400) {
             col = palette[Math.round(random(4))];
-            fill(col[0],col[1],col[2])
+            //fill(col[0],col[1],col[2])
+            fill(col)
             x = random(-20,width);
             y = random(-20,height);
             dots = dots.concat(current_line);
