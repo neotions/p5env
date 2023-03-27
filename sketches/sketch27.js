@@ -8,11 +8,13 @@ let z = 0;
 vec = p5.Vector;
 const rec = document
 
+wscale,hscale = 0.5,0.5;
+
 // runs once
 function setup() {
 
   // canvas variable 
-  canvas = createCanvas(800, 800);
+  canvas = createCanvas(800 * wscale, 800 * hscale);
   canvas.id("canvas");
 
   t = 0;
