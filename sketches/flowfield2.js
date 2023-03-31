@@ -1,5 +1,5 @@
 function setup() {
-    canvas = createCanvas(800,800);
+    canvas = createCanvas(400,400);
     
     //noLoop();
     //console.log(field.field);
@@ -21,6 +21,8 @@ function setup() {
     //colorMode(HSB)
     background(225)
 
+    /* custom hard coded 
+
     palette = [
         color("#F2A0CE"),
         color("#482A74"),
@@ -28,6 +30,8 @@ function setup() {
         color("#659DBE"),
         color("#F3EBC4")
     ]
+
+    */
 
     start = [random(360),100,100];
     //palette = shades(start,4,10);
