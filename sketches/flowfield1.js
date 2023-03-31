@@ -33,8 +33,8 @@ function draw() {
 
     for (let f = 0; f < 1000; f++ ) {
 
-        x = x + noise(x/200 * noise(cos(x/5)));
-        y = y + noise(y/200 * noise(sin(y/5)));
+        x = x + (cos(x)) * 2;
+        y = y + (sin(y)) * 2;
         
         
         //x = x + (sin(x/1000) + 1) / 2;

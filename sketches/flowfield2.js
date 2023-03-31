@@ -55,8 +55,8 @@ function draw() {
         
         s1 = (sin(f) +1 /1);
         
-        dx = sin(y/64/2 + cos(y/48/2))
-        dy = cos(x/64/2 + sin(x/48/2))
+        dx = cos(y/32/2 + cos(y/24/2))
+        dy = sin(x/32/2 - sin(x/24/2))
 
         x = x + dx;
         y = y + dy;
