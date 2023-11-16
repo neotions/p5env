@@ -1,17 +1,23 @@
-// ffmpeg command : ffmpeg -r 60 -f image2 -s 800x800 -i "%07d.png" -vcodec libx264 -crf 17 -pix_fmt yuv420p output.mp4
+
+
+
+  // ffmpeg command : ffmpeg -r 60 -f image2 -s 800x800 -i "%07d.png" -vcodec libx264 -crf 17 -pix_fmt yuv420p output.mp4
 
 // globals
 let canvas;
 let capture;
 let p_index;
 let z = 0;
+scl = 1000
+
 
 // runs once
 function setup() {
 
   // canvas variable 
-  canvas = createCanvas(400, 400);
+  canvas = createCanvas(1*scl,2*scl);
   canvas.id("canvas");
+
 
   // for capture
   capture = new CCapture({
@@ -19,16 +25,13 @@ function setup() {
     name: "frames"
   });
 
-
-
- 
   // settings
   fr = 60
-  seconds = 60;
+  seconds = 15;
   num_f = fr * seconds;
-  recording = false;
-  sliders = true;
-  gap = width / 100;
+  recording = true;
+  sliders = false;
+  gap = width / 10;
   corners = 0;
   strokeWeight(0)
   colorMode(HSB);
@@ -79,55 +82,24 @@ function draw() {
     }
   }
 
-  loadPixels(); // load the pixel array
+    // SKETCH GOES RIGHT HERE 
 
-  // rows
-  for (let i = 0; i < height; i++) {
-    // columns
-    for (let j = 0; j < width; j++) {
-      let index = (i + j * width) * 4;
-
-      let y = i - height / 2;
-      let x = j - width / 2;
-
-      let s1 = sin(z + y / 200) + 1 / 2;
-      let s0 = cos(z + x / 100) + 1 / 2;
-      let signal = (sin(sin((y * s1) / 200) - cos((x * s0) / 200) + z) + 1) / 2;
-
-      let f = sin(signal) * 360;
-
-      if (f > 0) {
-        let p_index = Math.round(f / 72);
-        let c;
-        if (f == 360) {
-          c = palette[0];
-        } else {
-          c = palette[p_index];
-        }
-
-        pixels[index] = c[0];
-        pixels[index + 1] = c[1];
-        pixels[index + 2] = c[2];
-        pixels[index + 3] = 255; // set alpha value to opaque
-      } else {
-        pixels[index] = 0;
-        pixels[index + 1] = 0;
-        pixels[index + 2] = 0;
-        pixels[index + 3] = 255;
+    for (y = 0; y < height; y += gap) {
+      for (x = 0; x < width; x += gap){
+        
+        s1 = (cos((x * y) + z) + 1 / 2 );
+        s2 = (sin((x * y) + s1) + 1 / 2 );
+        
+        value = noise(x + s1,y + s2)
+        fill(343,value*70+10,100)
+        square(x,y,gap)
       }
     }
-  }
-
-  updatePixels(); // update the canvas with the modified pixel array
-
-  // speed
-  z += 0.03; //speed.value() / 100;
+    
+    z += 0.08
 
   // for capture
   if (recording) {
     capture.capture(document.getElementById("canvas"));
   }
 }
-
-
-

@@ -19,9 +19,6 @@ function setup() {
     name: "frames"
   });
 
-
-
- 
   // settings
   fr = 60
   seconds = 60;
@@ -79,49 +76,7 @@ function draw() {
     }
   }
 
-  loadPixels(); // load the pixel array
-
-  // rows
-  for (let i = 0; i < height; i++) {
-    // columns
-    for (let j = 0; j < width; j++) {
-      let index = (i + j * width) * 4;
-
-      let y = i - height / 2;
-      let x = j - width / 2;
-
-      let s1 = sin(z + y / 200) + 1 / 2;
-      let s0 = cos(z + x / 100) + 1 / 2;
-      let signal = (sin(sin((y * s1) / 200) - cos((x * s0) / 200) + z) + 1) / 2;
-
-      let f = sin(signal) * 360;
-
-      if (f > 0) {
-        let p_index = Math.round(f / 72);
-        let c;
-        if (f == 360) {
-          c = palette[0];
-        } else {
-          c = palette[p_index];
-        }
-
-        pixels[index] = c[0];
-        pixels[index + 1] = c[1];
-        pixels[index + 2] = c[2];
-        pixels[index + 3] = 255; // set alpha value to opaque
-      } else {
-        pixels[index] = 0;
-        pixels[index + 1] = 0;
-        pixels[index + 2] = 0;
-        pixels[index + 3] = 255;
-      }
-    }
-  }
-
-  updatePixels(); // update the canvas with the modified pixel array
-
-  // speed
-  z += 0.03; //speed.value() / 100;
+    // SKETCH GOES RIGHT HERE 
 
   // for capture
   if (recording) {

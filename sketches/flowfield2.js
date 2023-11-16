@@ -1,5 +1,5 @@
 function setup() {
-    canvas = createCanvas(400,400);
+    canvas = createCanvas(600,600);
     
     //noLoop();
     //console.log(field.field);
@@ -15,10 +15,10 @@ function setup() {
     gap = 5;
     dot_size = 10;
 
-    noiseDetail(20)
+    noiseDetail(2)
 
-    colorMode(RGB)
-    //colorMode(HSB)
+    //colorMode(RGB)
+    colorMode(HSB)
     background(225)
 
     /* custom hard coded 
@@ -39,6 +39,10 @@ function setup() {
     //palette = gradient(start,4,15,true);
     //palette = tetradic(start,4,10);
 
+    palette = gradient_analogous(start,4,10)
+
+    background(palette[0][0],20,20)
+
     stop_button = document.getElementById('stop-button');
 
 }
@@ -57,10 +61,14 @@ function draw() {
         //x = x + noise(x/200 * noise(cos(x/50)));
         //y = y + noise(y/200 * noise(sin(y/50)));
         
-        s1 = (sin(f) +1 /1);
+        s1 = (cos(f) +1 /1);
         
-        dx = cos(y/32/2 + cos(y/24/2))
-        dy = sin(x/32/2 - sin(x/24/2))
+        //dx = sin(y/256 * sin(y/128) + s1)
+        //dy = sin(x/256 * sin(x/256) - s1)
+
+
+        dx = noise(x/200 * noise(cos(x/500)));
+        dy = noise(y/200 * noise(sin(y/500)));
 
         x = x + dx;
         y = y + dy;
@@ -76,7 +84,7 @@ function draw() {
             dots = dots.concat(current_line);
             for (c = 0; c < current_line.length; c++) {
                 coords = current_line[c];
-                circle(coords[0],coords[1],dot_size);
+                circle(coords[0],coords[1],cos(f) * dot_size);
             }
             current_line = [];
 
