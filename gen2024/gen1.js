@@ -1,4 +1,4 @@
-// ffmpeg command : ffmpeg -r 60 -f image2 -s 800x800 -i "%07d.png" -vcodec libx264 -crf 17 -pix_fmt yuv420p output.mp4
+// ffmpeg command ::: ffmpeg -r 60 -f image2 -s 800x800 -i "%07d.png" -vcodec libx264 -crf 17 -pix_fmt yuv420p output.mp4
 
 // globals
 let canvas;
@@ -8,7 +8,7 @@ let z = 0;
 
 function setup() {
 
-  canvas = createCanvas(800, 800, WEBGL);
+  canvas = createCanvas(300, 300, WEBGL);
   canvas.id("canvas");
 
   pixelDensity(1); // Ensure pixel density is 1 for accurate pixel manipulation
