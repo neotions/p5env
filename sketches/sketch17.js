@@ -25,7 +25,7 @@ function setup() {
   num_f = fr * seconds;
   recording = true;
   sliders = true;
-  gap = width / 160;
+  gap = width / 80;
   corners = 2;
   strokeWeight(0.5)
   colorMode(HSB);
@@ -54,7 +54,13 @@ function setup() {
   palette = split_compliment(start,20);
   palette = gradient(start,4,25,true);
   //palette = tetradic(start,4,10);
-  
+  palette = split_triadic(start,4,10);
+  palette = desaturated_complementary(start,4,10);
+  palette = monochromatic_analogous(start,4,10);
+  palette = cool_to_warm(start,4,10);
+  palette = neutral(start,4,10);
+  palette = triadic_complementary(start,4,10);
+  palette = technicolor(start,4,10);
 }
 
 // runs forever if noLoop() is called

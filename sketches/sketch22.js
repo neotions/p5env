@@ -66,10 +66,15 @@ function setup() {
   //palette = split_compliment(start,20);
   //palette = gradient(start,4,30,true);
   palette = tetradic(start,4,10);
+  palette = split_triadic(start,4,10);
+  
   palette[0][2] = 10; 
   palette[1][2] = 100; 
   palette[2][2] = 100; 
   palette[3][2] = 100; 
+
+
+  
   
   
 }

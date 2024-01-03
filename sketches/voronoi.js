@@ -1,6 +1,6 @@
 function setup() {
 
-	createCanvas(1200, 1100);
+	createCanvas(800, 800);
 	noSmooth();
 
 	//Settings for drawing(these are the default values)
@@ -13,7 +13,7 @@ function setup() {
 	voronoiCellStroke(255);
 	//Set Site Stroke
 	voronoiSiteStroke(0);
-  noStroke();
+  	noStroke();
 	//Set flag to draw Site
 	voronoiSiteFlag(true);
 
@@ -71,12 +71,9 @@ function setup() {
 
 	//Simulate initial mouse press for simplicity
 
-
 }
 
 function draw(){
 	background(150);	
-
-  voronoiDraw(0, 0, true, false);
-
+  	voronoiDraw(0, 0, true, false);
 }
