@@ -25,6 +25,7 @@ function setup() {
   num_f = fr * seconds;
   recording = true;
   sliders = true;
+  gap = width / 50;
   gap = width / 80;
   corners = 2;
   strokeWeight(0.5)

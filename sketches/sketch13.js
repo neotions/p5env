@@ -22,7 +22,7 @@ function setup() {
   //noLoop();
   colorMode(HSB);
   frameRate(fr);
-  gap = width / 50;
+  gap = width / 150;
   
   /*
   param1 = createSlider(-1000, 1000, 100);

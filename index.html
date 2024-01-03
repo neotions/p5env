@@ -9,10 +9,10 @@
     -->
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
-    <title>p5 sketch env</title>
+    <title>p5env</title>
   </head>
   <body  style="background-color: #111111;">
-    <h1>PUSHING p5</h1>
+    <h1 id="sketch-title">PUSHING p5</h1>
     <main>
     </main>
     <div id="rec" class="no-show">
@@ -55,8 +55,24 @@
 
 
 
+  <script>
+    const scriptElement = document.querySelector('#sketch-script');
+    const scriptPath = scriptElement.src;
+    const scriptName = scriptPath.replace(/^.*\/([^/]+)\.js$/, '$1');
+    
+    document.getElementById("sketch-title").innerHTML = scriptName;
+  </script>
+
 
 </html>
+
+
+
+
+
+
+
+<a   >     This is my link</a>
 
 
 
