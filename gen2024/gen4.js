@@ -10,7 +10,7 @@ let z = 0;
 
 function setup() {
 
-  canvas = createCanvas(800, 1200);
+  canvas = createCanvas(400, 400);
   canvas.id("canvas");
 
   pixelDensity(1); // Ensure pixel density is 1 for accurate pixel manipulation
@@ -87,15 +87,13 @@ function draw() {
 
 
         // Convert to polar coordinates
-        let angle = atan2(x + y, y);
+        let angle = atan2(x, y);
         let radius = sqrt(x * x + y * y);
 
-        // Diamond waves effect
-        let r = ((cos(angle * 3 + z) * sin(radius * 3 + z)) / 2) * 255;
-        let g = ((sin(angle * 3 + z) * cos(radius * 3 + z)) / 2) * 255;
-        let b = ((sin(angle * 3 + z) * sin(radius * 3 + z)  + 2 ) / 2) * 255;
-
-
+        let r = ((sin(angle * 4 + radius * 4 + z) + 1) / 2) * 255;
+        let g = ((cos(angle * 4 - radius * 4 + z) + 1) / 2) * 255;
+        let b = ((sin(angle * 4 + radius * 4 - z) + cos(radius * 4 - z) + 2) / 4) * 255;
+        
         //r = ((sin(angle * 5 + z) * cos(radius * 5 + z) + 1) / 2) * 255;
         //g = ((cos(angle * 5 + z + PI/4) * sin(radius * 5 + z) + 1) / 2) * 255;
         //b = ((sin(angle * 5 + z + PI/2) * cos(radius * 5 + z) + 1) / 2) * 255;
@@ -119,8 +117,11 @@ function draw() {
 
   updatePixels(); // Update the canvas with the pixel[] array data
   
+    // shift Z increment
+    zIncrement = ((atan(z) + 1) / 2) * 0.01;
+
     // Increment z slightly on each frame to animate the pattern over time
-    z += 0.016; // Adjust this value to change the speed of the animation
+    z += 0.1; // Adjust this value to change the speed of the animation
 
     // for capture
     if (recording) {

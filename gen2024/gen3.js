@@ -26,7 +26,7 @@ function setup() {
     fr = 60
     seconds = 30
     num_f = fr * seconds;
-    recording = true;
+    recording = false;
     frameRate(fr)
     //noStroke();
     //noLoop();
@@ -121,7 +121,7 @@ function draw() {
     zIncrement = ((atan(z) + 1) / 2) * 0.01;
 
     // Increment z slightly on each frame to animate the pattern over time
-    z += 0.05; // Adjust this value to change the speed of the animation
+    z += 1; // Adjust this value to change the speed of the animation
 
     // for capture
     if (recording) {
