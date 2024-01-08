@@ -10,7 +10,7 @@ let z = 0;
 
 function setup() {
 
-  canvas = createCanvas(400, 400);
+  canvas = createCanvas(200, 200);
   canvas.id("canvas");
 
   pixelDensity(1); // Ensure pixel density is 1 for accurate pixel manipulation
@@ -26,7 +26,7 @@ function setup() {
     fr = 60
     seconds = 30
     num_f = fr * seconds;
-    recording = true;
+    recording = false;
     frameRate(fr)
     //noStroke();
     //noLoop();
@@ -87,26 +87,51 @@ function draw() {
 
 
         // Convert to polar coordinates
-        let angle = atan2(x, y);
+        let angle = atan2(x  * y, y * x);
         let radius = sqrt(x * x + y * y);
 
         let r = ((sin(angle * 4 + radius * 4 + z) + 1) / 2) * 255;
         let g = ((cos(angle * 4 - radius * 4 + z) + 1) / 2) * 255;
         let b = ((sin(angle * 4 + radius * 4 - z) + cos(radius * 4 - z) + 2) / 4) * 255;
         
-        //r = ((sin(angle * 5 + z) * cos(radius * 5 + z) + 1) / 2) * 255;
-        //g = ((cos(angle * 5 + z + PI/4) * sin(radius * 5 + z) + 1) / 2) * 255;
-        //b = ((sin(angle * 5 + z + PI/2) * cos(radius * 5 + z) + 1) / 2) * 255;
 
 
-        //r = ((sin(angle * 4 + z) * cos(radius * 4 - z) + 1) / 2) * 255;
-        //g = ((cos(angle * 4 - z) * sin(radius * 4 + z) + 1) / 2) * 255;
-        //b = ((sin(angle * 4 - z) * cos(radius * 4 - z) + 1) / 2) * 255;
+r = ((sin(radius * 4 + z) + cos(angle * 6 - radius + z) + 2) / 4) * 255;
+g = ((cos(radius * 4 - z) + sin(angle * 6 + radius - z + PI/3) + 2) / 4) * 255;
+b = ((sin(radius * 4 + z) + cos(angle * 6 - radius + z + PI/2) + 2) / 4) * 255;
 
-        //r = ((sin(angle * 5 + z) * cos(radius * 5 + z) + 1) / 2) * 255;
-        //g = ((cos(angle * 5 + z + PI/4) * sin(radius * 5 + z) + 1) / 2) * 255;
-        //b = ((sin(angle * 5 + z + PI/2) * cos(radius * 5 + z) + 1) / 2) * 255;
-        
+r = ((sin(radius * 4 + z) * cos(angle * 7 + z) + 1) / 2) * 255;
+g = ((cos(radius * 4 - z) * sin(angle * 7 - z + PI/3) + 1) / 2) * 255;
+b = ((sin(radius * 4 + z) * cos(angle * 7 + z + PI/2) + 1) / 2) * 255;
+
+
+r = ((sin(radius * 4 + z) * cos(angle * 7 + z) + 1) / 2) * 255;
+g = ((cos(radius * 4 - z) * sin(angle * 7 - z + PI/3) + 1) / 2) * 255;
+b = ((sin(radius * 4 + z) * cos(angle * 7 + z + PI/2) + 1) / 2) * 255;
+
+
+r = ((cos(radius * 3 + z) + sin(angle * 5 - z) + 2) / 4) * 255;
+g = ((sin(radius * 3 - z) + cos(angle * 5 + z + PI/4) + 2) / 4) * 255;
+b = ((cos(radius * 3 + z) + sin(angle * 5 - z + PI/2) + 2) / 4) * 255;
+
+
+r = ((sin(radius * 5 - z) + cos(angle * 4 + z) + 2) / 4) * 255;
+g = ((cos(radius * 5 + z) + sin(angle * 4 - z + PI/6) + 2) / 4) * 255;
+b = ((sin(radius * 5 - z) + cos(angle * 4 + z + PI/3) + 2) / 4) * 255;
+
+
+r = ((sin(radius * 4 + z) * cos(angle * 7 + z) + 1) / 2) * 255;
+g = ((cos(radius * 4 - z) * sin(angle * 7 - z + PI/3) + 1) / 2) * 255;
+b = ((sin(radius * 4 + z) * cos(angle * 7 + z + PI/2) + 1) / 2) * 255;
+
+
+
+// monochromatic
+//r = g = b = ((sin(angle * 4 + radius * 3 - z) + cos(angle * 4 - radius * 3 + z) + 2) / 4) * 255; // Monochromatic
+
+
+
+   
         // Set the pixels on the canvas
         pixels[index] = r; // Red
         pixels[index + 1] = g; // Green
